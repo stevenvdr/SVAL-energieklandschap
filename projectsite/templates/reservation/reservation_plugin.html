@@ -1,0 +1,71 @@
+{% load sekizai_tags %}
+{% load i18n %}
+
+{% addtoblock "js" %}
+<script type="text/javascript">
+</script>
+{% endaddtoblock %}
+
+
+{% if messages %}
+    <ul class="messages">
+        {% for message in messages %}
+            <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+        {% endfor %}
+    </ul>
+{% endif %}
+
+<!-- begin of #slider -->
+<div id="calendar_container">
+<div id="calendar">
+    <table>
+    <tr>
+        <th>{% trans 'Monday' %}</th>
+        <th>{% trans 'Tuesday' %}</th>
+        <th>{% trans 'Wednesday' %}</th>
+        <th>{% trans 'Thursday' %}</th>
+        <th>{% trans 'Friday' %}</th>
+        <th>{% trans 'Saturday' %}</th>
+        <th>{% trans 'Sunday' %}</th>
+    </tr>
+    {% for day in calendar %}
+    {% cycle '<tr><td>' '<td>' '<td>' '<td>' '<td>' '<td>' '<td>' %}
+    {% if not day.reservation %}
+        <div class='free'>
+        {% trans 'free' %}
+        {% trans 'Make a reservation for this day' %}
+    {% else %}
+        {% if day.reservation.approved %}
+            <div class='approved'>
+            {% trans 'reserved' %}
+            {% if request.user.is_superuser %}
+                <a href="./?delete={{ day.date|date:"SHORT_DATE_FORMAT" }}">{% trans 'Delete this reservation' %}</a>
+                {{ day.reservation.contact_name }}
+                {{ day.reservation.contact_mail }}
+                {{ day.reservation.contact_phone }}
+            {% endif %}
+        {% else %}
+            <div class='pending'>
+            {% trans 'pending' %}
+            {% if request.user.is_superuser %}
+                <a href="./?approve={{ day.date|date:"SHORT_DATE_FORMAT" }}">{% trans 'Approve this reservation' %}</a>
+                <a href="./?delete={{ day.date|date:"SHORT_DATE_FORMAT" }}">{% trans 'Delete this reservation' %}</a>
+                {{ day.reservation.contact_name }}
+                {{ day.reservation.contact_mail }}
+                {{ day.reservation.contact_phone }}
+            {% endif %}
+        {% endif %}
+    {% endif %}
+    </div>
+    {% cycle '</td>' '</td>' '</td>' '</td>' '</td>' '</td>' '</td></tr>' %}
+    {% endfor %}
+    </table>
+
+</div>
+<div>
+<form method="post" action="">
+    {%  csrf_token %}
+    {{ form.as_p }}
+    <input type="submit" value="Submit" />
+</form>
+</div>
