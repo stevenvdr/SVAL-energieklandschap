@@ -4,3 +4,6 @@
 local_settings.py
 *~
 projectsite/media*
+media*
+mycms.db
+
