@@ -1,10 +1,12 @@
 # -*- coding: utf-8 -*-
+# This settings file should contain all settings that are the same whatever
+# the kind of server
 import os
 
 gettext = lambda s: s
 
-PROJECT_DIR = os.path.abspath(os.path.dirname(__file__)) 
-BASE_PATH = os.path.dirname(__file__) 
+PROJECT_DIR = os.path.abspath(os.path.dirname(__file__))  + "/.."
+BASE_PATH = os.path.dirname(__file__)  + "/.."
 
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
@@ -17,13 +19,6 @@ MANAGERS = ADMINS
 
 LANGUAGES = [('nl', 'nl')]
 DEFAULT_LANGUAGE = 0
-
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(PROJECT_DIR, 'mycms.db'),
-    }
-}
 
 # Local time zone for this installation. Choices can be found here:
 # http://en.wikipedia.org/wiki/List_of_tz_zones_by_name
@@ -58,6 +53,7 @@ STATIC_ROOT = os.path.join(PROJECT_DIR, 'static')
 STATICFILES_DIRS = (
     os.path.join(PROJECT_DIR, 'projectsite', 'static'),
 )
+
 # URL that handles the media served from MEDIA_ROOT. Make sure to use a
 # trailing slash if there is a path component (optional in other cases).
 # Examples: "http://media.lawrence.com", "http://example.com/media/"
