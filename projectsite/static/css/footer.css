@@ -1,0 +1,25 @@
+@charset "utf-8";
+/* CSS Document */
+
+#footer {
+	margin:0 auto;
+	margin-top:40px; 
+	background-color: #fff;
+	box-shadow:0 0 5px 10px #fff;
+	border-radius:15px 15px 0 0;
+	padding: 15px;
+	padding-bottom: 0;
+}
+
+#footer p {
+	margin:10px;
+}	
+#footer ul li {
+	margin:0;
+	line-height:normal;
+}	
+
+#credits,
+#credits p{
+	margin:0;
+}

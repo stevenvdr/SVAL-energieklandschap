@@ -1,0 +1,74 @@
+{% load cms_tags sekizai_tags menu_tags %}
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<title>Samenwerking Voor Agrarisch Landschap - {{ request.current_page.get_title }}</title>
+
+<link href="{{ STATIC_URL }}css/skeleton/base.css"  rel="stylesheet" type="text/css" />
+<link href="{{ STATIC_URL }}css/skeleton/skeleton.css" rel="stylesheet" type="text/css" />
+<link href="{{ STATIC_URL }}css/skeleton/layout.css" rel="stylesheet" type="text/css" />
+
+<link href="{{ STATIC_URL }}css/header.css"  rel="stylesheet" type="text/css" />
+<link href="{{ STATIC_URL }}css/global.css"  rel="stylesheet" type="text/css" />
+<link href="{{ STATIC_URL }}css/footer.css"  rel="stylesheet" type="text/css" />
+
+{% render_block "css" %}
+
+</head>
+
+<body>
+    {% cms_toolbar %}
+
+    <div id="heading">
+        <div id="header_border"></div>
+        <div id="header_container" class="container">
+            <div id="header_logo" class="four columns"><img src="{{ STATIC_URL }}img/svallogo.png" alt="sval" class="scale-with-grid" /></div>
+
+            <div id="header_title_container" class="container twelve columns">
+                <div id="header_title" class="twelve columns">
+                    {% placeholder "header" or %}
+                    {% show_placeholder "header" "home" %}
+                    {% endplaceholder %}
+                </div>
+
+                <div id="header_menu" class="twelve columns">
+                    <ul>{% show_menu %}</ul>
+                </div>
+            </div>
+        </div>
+      </div>
+
+      <div id="content" class="container transparent">
+        {% placeholder "main" %}
+      </div>
+
+      <div id="footer" class="container transparent">
+      <div class="column one-third center">
+        {% placeholder "footer-1" "home" or %}
+          <h4>Op deze website:</h4>
+          <ul>
+              <ul>{% show_menu %}</ul>
+          </ul>
+        {% endplaceholder %}
+      </div>
+      <div class="column one-third center">
+          {% placeholder "footer-2" or %}
+          {% show_placeholder "footer-2" "home" %}
+          {% endplaceholder %}
+      </div>
+      <div class="column one-third center">
+          {% placeholder "footer-3" or %}
+          {% show_placeholder "footer-3" "home" %}
+          {% endplaceholder %}
+      </div>
+    </div>
+    <div id="credits" class="container columns sixteen center">
+        {% placeholder "credits" inherit %}
+    </div>
+  {% render_block "js" %}
+</body>
+</html>

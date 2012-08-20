@@ -1,0 +1,77 @@
+@charset "utf-8";
+/* CSS Document */
+
+#heading {
+	position: relative;
+	left: 0px;
+	top: 0px;
+	width: 100%;
+	min-height: 200px;
+	visibility: visible;
+	background-color: #57B947;
+	overflow:hidden; 	
+}
+#header_border {
+	position: absolute;
+	background:url("../img/snippers%20achtergrond.jpg")   no-repeat scroll 0 -144px transparent;
+	border-top: 10px solid #22C3F3;
+	border-right: 10px solid #22C3F3;
+	left: 0px;
+	right: -10%; 
+	bottom: 0px;
+	height: 35%;
+	border-top-right-radius: 250% 75%;	
+	box-shadow: inset 0px 5px 5px #999999;
+}
+#header_container {
+	position: relative;
+	margin: 0 auto;
+	width: 960px;
+	height: 220px;
+}
+#header_logo {
+}
+#header_title_container{
+	height:100%;
+}
+
+#header_title {
+	height:100%;
+}
+
+#header_title h1,
+#header_title h2,
+#header_title h3,
+#header_title h4,
+#header_title h5,
+#header_title p {
+	font-family: Arial, Helvetica, sans-serif;
+	color: #FFF;
+	text-align: center;
+}
+#header_menu {
+	position:absolute;
+	bottom:0;
+}
+#header_menu ul {
+	float:right;
+}
+#header_menu ul li {
+	text-align:center;
+	display: inline;
+	list-style:none;
+	padding:3px;
+	border:solid #990000 1px;
+	background:#900;
+	border-radius:5px;
+	margin:5px;
+}
+#header_menu ul li:hover {
+	background:#D00;
+}
+#header_menu a {
+	text-decoration: none;
+	color:#fff;
+	font-size:18px;
+	font-weight:bold;
+}

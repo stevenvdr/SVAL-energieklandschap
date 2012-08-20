@@ -36,7 +36,7 @@ TIME_ZONE = 'Europe/Brussels'
 
 # Language code for this installation. All choices can be found here:
 # http://www.i18nguy.com/unicode/language-identifiers.html
-LANGUAGE_CODE = 'en'
+LANGUAGE_CODE = 'nl'
 
 SITE_ID = 1
 
@@ -54,6 +54,10 @@ MEDIA_ROOT = os.path.join(PROJECT_DIR, 'media')
 
 STATIC_ROOT = os.path.join(PROJECT_DIR, 'static')
 
+# Directories where staticfiles can find static files not in a particular app
+STATICFILES_DIRS = (
+    os.path.join(PROJECT_DIR, 'projectsite', 'static'),
+)
 # URL that handles the media served from MEDIA_ROOT. Make sure to use a
 # trailing slash if there is a path component (optional in other cases).
 # Examples: "http://media.lawrence.com", "http://example.com/media/"
@@ -81,6 +85,7 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
+    'django.middleware.locale.LocaleMiddleware' ,
     'cms.middleware.page.CurrentPageMiddleware',
     'cms.middleware.user.CurrentUserMiddleware',
     'cms.middleware.toolbar.ToolbarMiddleware',
@@ -99,6 +104,7 @@ TEMPLATE_CONTEXT_PROCESSORS = (
 
 CMS_TEMPLATES = (
     ('example.html', 'Example Template'),
+    ('base.html', 'Main Template')
 )
 
 ROOT_URLCONF = 'projectsite.urls'
@@ -115,12 +121,13 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.admin',
     'django.contrib.staticfiles',
+    'django.contrib.comments',
     'cms',
     'menus',
     'mptt',
     'south',
     'cms.plugins.text',
-    'cms.plugins.picture',
+    #'cms.plugins.picture',
     'cms.plugins.link',
     'cms.plugins.file',
     'cms.plugins.snippet',
@@ -129,5 +136,6 @@ INSTALLED_APPS = (
     'photologue',
     'projectsite.apps.photologue-plugin',
     'tagging',
+    #'zinnia',
     #'projectsite.reservation',
 )

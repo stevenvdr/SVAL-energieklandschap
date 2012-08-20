@@ -1,0 +1,23 @@
+@charset "utf-8";
+/* CSS Document */
+
+body {
+	margin: 0;
+	background-image:url(../img/snippers%20achtergrond.jpg);
+}
+
+#content {
+	margin:0 auto;
+	margin-top:25px; 
+	background-color: #fff;
+	box-shadow:0 0 5px 10px #fff;
+	border-radius:15px;
+	padding: 15px;
+}
+
+div.transparent {
+	opacity:0.8;
+}
+div.center {
+	text-align:center;
+}

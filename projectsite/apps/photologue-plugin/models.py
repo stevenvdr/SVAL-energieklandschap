@@ -1,3 +1,5 @@
+from django.utils.translation import ugettext as _
+
 from django.db import models
 
 from cms.models import CMSPlugin
@@ -7,7 +9,7 @@ class GalleryPlugin(CMSPlugin):
     gallery = models.ForeignKey(Gallery)
 
     def __unicode__(self):
-        return "Fotoslider " + self.gallery.__unicode__()
+        return _("Photoslider ") + self.gallery.__unicode__()
 
 
 class ImagePlugin(CMSPlugin):
@@ -16,4 +18,4 @@ class ImagePlugin(CMSPlugin):
     url = models.URLField(max_length=200, blank=True)
 
     def __unicode__(self):
-        return "Afbeelding " + self.image.__unicode__()
+        return _("Image ") + self.image.__unicode__()
