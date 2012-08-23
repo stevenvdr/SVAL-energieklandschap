@@ -88,7 +88,7 @@ MIDDLEWARE_CLASSES = (
 )
 
 TEMPLATE_CONTEXT_PROCESSORS = (
-    'django.core.context_processors.auth',
+    'django.contrib.auth.context_processors.auth',
     'django.core.context_processors.i18n',
     'django.core.context_processors.request',
     'django.core.context_processors.media',
@@ -132,6 +132,12 @@ INSTALLED_APPS = (
     'photologue',
     'projectsite.apps.photologue-plugin',
     'tagging',
-    #'zinnia',
+    'zinnia',
+    'cmsplugin_zinnia'
     #'projectsite.reservation',
 )
+
+#Zinnia configurations
+CMSPLUGIN_ZINNIA_APP_MENUS = ()
+CMSPLUGIN_ZINNIA_TEMPLATES = [
+]

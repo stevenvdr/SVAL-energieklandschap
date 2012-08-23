@@ -1,12 +1,15 @@
-{% load cms_tags sekizai_tags menu_tags %}
+{% load cms_tags sekizai_tags menu_tags zinnia_tags %}
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+{% block meta %}{% endblock %}
 
 <title>Samenwerking Voor Agrarisch Landschap - {{ request.current_page.get_title }}</title>
+
+
 
 <link href="{{ STATIC_URL }}css/skeleton/base.css"  rel="stylesheet" type="text/css" />
 <link href="{{ STATIC_URL }}css/skeleton/skeleton.css" rel="stylesheet" type="text/css" />
@@ -15,13 +18,13 @@
 <link href="{{ STATIC_URL }}css/header.css"  rel="stylesheet" type="text/css" />
 <link href="{{ STATIC_URL }}css/global.css"  rel="stylesheet" type="text/css" />
 <link href="{{ STATIC_URL }}css/footer.css"  rel="stylesheet" type="text/css" />
-
-{% render_block "css" %}
+    {% render_block "css" %}
 
 </head>
 
 <body>
     {% cms_toolbar %}
+
 
     <div id="heading">
         <div id="header_border"></div>
@@ -43,7 +46,11 @@
       </div>
 
       <div id="content" class="container transparent">
+        {% block breadcrumbs %}{% endblock %}
         {% placeholder "main" %}
+          <div class="twelve columns">{% block content %}{% endblock %}</div>
+          <div class="four columns">{% block sidebar %}{% endblock %}</div>
+
       </div>
 
       <div id="footer" class="container transparent">
@@ -51,7 +58,7 @@
         {% placeholder "footer-1" "home" or %}
           <h4>Op deze website:</h4>
           <ul>
-              <ul>{% show_menu %}</ul>
+              <ul>{% show_menu 0 0 %}</ul>
           </ul>
         {% endplaceholder %}
       </div>
