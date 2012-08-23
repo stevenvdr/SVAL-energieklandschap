@@ -8,7 +8,7 @@ servers = {
 
     ],
     'production': [
-        's8',
+        's8.wservices.ch',
     ]
 }
 
