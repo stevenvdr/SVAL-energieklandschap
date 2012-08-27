@@ -21,5 +21,6 @@
 
 #credits,
 #credits p{
-	margin:0;
+	margin:0 auto;
+    margin-top: 20px;
 }

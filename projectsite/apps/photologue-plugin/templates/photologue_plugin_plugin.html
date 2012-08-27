@@ -1,7 +1,9 @@
+{% load resize_images %}
 {% if instance.url %}
 <a href="{{ instance.url }}" />
 {% endif %}
-<img src="{{ image.image.url }}" alt="{{ image.title }}" class="scale-with-grid" {% ifnotequal instance.width 0 %} width="{{ instance.width }}" {% endifnotequal %}/>
+<!--<img src="{{ image.image.url }}" alt="{{ image.title }}" class="scale-with-grid" {% ifnotequal instance.width 0 %} width="{{ instance.width }}" {% endifnotequal %}/>-->
+<img src="{{ image|resize:instance.width }}" alt="{{ image.title }}" class="scale-with-grid" {% ifnotequal instance.width 0 %} width="{{ instance.width }}" {% endifnotequal %}/>
 {% if instance.url %}
 </a>
 {% endif %}
