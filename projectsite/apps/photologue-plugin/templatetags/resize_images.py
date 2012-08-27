@@ -3,8 +3,6 @@ __author__ = 'steven'
 from django import template
 from photologue.models import Photo, PhotoSize
 
-from settings import DEFAULT_WIDTH
-
 register = template.Library()
 
 @register.filter
