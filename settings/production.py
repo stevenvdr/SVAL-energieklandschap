@@ -3,7 +3,13 @@
 # servers
 # Beware not to put any sensitive information in this file!
 
+from base import *
+
 DEBUG = False
+
+INSTALLED_APPS += (
+    'reversion',
+)
 
 TEMPLATE_LOADERS = (
    ('django.template.loaders.cached.Loader', (
