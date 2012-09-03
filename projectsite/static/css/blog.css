@@ -1,0 +1,17 @@
+ul.breadcrumbs li {
+    text-align:center;
+    display: inline;
+    margin:5px;
+}
+
+.entry-header h2 {
+    margin-bottom: 0;
+}
+
+div.entry-footer {
+    margin-bottom: 10px;
+}
+
+.entry-footer p {
+    margin-bottom: 0;
+}

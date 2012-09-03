@@ -1,0 +1,5 @@
+#content ul li {
+    list-style: disc;
+    margin-bottom: 0;
+    margin-left: 20px;
+}
