@@ -12,3 +12,5 @@ django-sekizai==0.6.1
 django-tagging==0.3.1
 html5lib==0.95
 wsgiref==0.1.2
+django-blog-zinnia==0.10
+cmsplugin_zinnia==0.3

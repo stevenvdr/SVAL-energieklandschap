@@ -9,6 +9,7 @@ class CMSGalleryPlugin(CMSPluginBase):
     model = GalleryPlugin
     name = _("Photo Slider")
     render_template = "photologue_plugin_gallery.html"
+    text_enabled = True
 
     def render(self, context, instance, placeholder):
         context.update({
@@ -21,6 +22,7 @@ class CMSImagePlugin(CMSPluginBase):
     model = ImagePlugin
     name = _("Image")
     render_template = "photologue_plugin_plugin.html"
+    text_enabled = True
 
     def render(self, context, instance, placeholder):
         context.update({

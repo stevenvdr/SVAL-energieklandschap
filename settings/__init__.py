@@ -19,7 +19,7 @@ def get_server_type():
         if server_name in names:
             return server_type
 
-    return 'testing' # default server type. This way
+    return 'development' # default server type. This way
     # not all testing servers have to be listed above
 
 exec("from %s import *" % get_server_type())
