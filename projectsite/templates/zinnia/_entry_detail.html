@@ -23,6 +23,7 @@
 
   <div class="entry-body">
     {% if object.image %}
+      {% if not continue_reading %}
     <div class="entry-image">
       <p>
         {% if continue_reading %}
@@ -34,6 +35,7 @@
         {% endif %}
       </p>
     </div>
+      {% endif %}
     {% endif %}
     <div class="entry-content">
       {{ object_content }}
@@ -43,7 +45,7 @@
       <a href="{{ object.get_absolute_url }}"
          title="{% blocktrans with object=object.title %}Continue reading {{ object }}{% endblocktrans %}"
          rel="bookmark">
-        {% trans "Continue reading" %}
+        {% trans "Lees Verder" %}
       </a>
     </p>
     {% endif %}

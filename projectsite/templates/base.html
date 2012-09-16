@@ -57,7 +57,7 @@
       <div id="footer" class="container transparent">
       <div class="column one-third center">
         {% placeholder "footer-1" "home" or %}
-          <h4>Op deze website:</h4>
+          <h4>Op deze website</h4>
           <ul>
               <ul>{% show_menu 0 0 %}</ul>
           </ul>
@@ -75,7 +75,9 @@
       </div>
     </div>
     <div id="credits" class="container columns sixteen center">
-        {% placeholder "credits" inherit %}
+        {% placeholder "credits" or %}
+        {% show_placeholder "credits" "home" %}
+        {% endplaceholder %}
     </div>
   {% render_block "js" %}
 </body>
