@@ -1,7 +1,7 @@
-ul.breadcrumbs li {
+#content ul.breadcrumbs li {
     text-align:center;
     display: inline;
-    margin:5px;
+    marging:5px;
 }
 
 .entry-header h2 {

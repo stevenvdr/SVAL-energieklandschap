@@ -59,7 +59,7 @@
 }
 #header_menu ul li {
 	text-align:center;
-	display: inline;
+	display: inline-block;
 	list-style:none;
 	padding:3px;
 	border:solid #990000 1px;
