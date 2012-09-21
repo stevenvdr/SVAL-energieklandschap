@@ -2,7 +2,8 @@
 {% load url from future %}
 {% addtoblock "css" %}<link href="{{ STATIC_URL }}css/blog.css"  rel="stylesheet" type="text/css" />{% endaddtoblock %}
 
-<div id="entry-{{ object.pk }}" class="hentry{% if object.featured %} featured{% endif %}">
+<div id="entry-{{ object.pk }}" class="hentry{% if object.featured %} featured{% endif %}
+      {% if continue_reading %} preview{% endif %}">
   <div class="entry-header">
     <h2 class="entry-title">
       <a href="{{ object.get_absolute_url }}" title="{{ object.title }}" rel="bookmark">
@@ -50,7 +51,7 @@
     </p>
     {% endif %}
   </div>
-
+  {% if not continue_reading %}
   <div class="entry-footer">
     <p class="entry-tags">
       <strong>{% trans "Tags" %}</strong> :
@@ -94,4 +95,5 @@
       {% endwith %}
     </p>
   </div>
+  {% endif %}
 </div>

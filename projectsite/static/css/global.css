@@ -6,16 +6,18 @@ body {
 	background-image:url(../img/snippers%20achtergrond.jpg);
 }
 
-#content {
+#container {
 	margin:0 auto;
 	margin-top:25px; 
 	background-color: #fff;
 	box-shadow:0 0 5px 10px #fff;
 	border-radius:15px;
 	padding: 15px;
-	text-align:center;
 }
 
+#content {
+    text-align:center;
+}
 #content p,
 #content h2,
 #content h3,

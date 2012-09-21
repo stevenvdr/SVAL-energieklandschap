@@ -3,3 +3,16 @@
     margin-bottom: 0;
     margin-left: 20px;
 }
+#content div.hentry.preview h2 {
+    font-size: x-large;
+}
+#content div.hentry.preview p {
+    margin-bottom: 0;
+}
+#content div.hentry.preview div.entry-header {
+    text-align: left;
+}
+#content div.hentry.preview .entry-header p,
+#content div.hentry.preview .entry-header h2 {
+    display: inline;
+}

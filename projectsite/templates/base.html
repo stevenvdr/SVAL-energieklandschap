@@ -46,13 +46,16 @@
         </div>
       </div>
 
-      <div id="content" class="container transparent">
+    <div id="container"class="container transparent">
+      <div id="content" class="twelve columns">
         {% block breadcrumbs %}{% endblock %}
         {% placeholder "main" %}
-          <div class="twelve columns">{% block content %}{% endblock %}</div>
-          <div class="four columns">{% block sidebar %}{% endblock %}</div>
-
+        {% block content %}{% endblock %}
       </div>
+      <div id="sidebar" class="four columns">
+          {% placeholder "sidebar" %}{% block sidebar %}{% endblock %}
+      </div>
+    </div>
 
       <div id="footer" class="container transparent">
       <div class="column one-third center">

@@ -15,3 +15,7 @@ div.entry-footer {
 .entry-footer p {
     margin-bottom: 0;
 }
+div.hentry {
+    padding-bottom: 1px;
+    box-shadow: 0px 5px 5px -5px #555;
+}
