@@ -3,11 +3,18 @@
     margin-bottom: 0;
     margin-left: 20px;
 }
+#content div.hentry.preview {
+    margin-bottom: 10px;
+    padding-bottom: 5px;
+}
 #content div.hentry.preview h2 {
     font-size: x-large;
 }
 #content div.hentry.preview p {
     margin-bottom: 0;
+}
+#content div.hentry.preview p.continue-reading {
+    margin-top: 5px;
 }
 #content div.hentry.preview div.entry-header {
     text-align: left;
