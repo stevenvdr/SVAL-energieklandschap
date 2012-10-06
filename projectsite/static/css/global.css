@@ -29,9 +29,9 @@ body {
 	text-align:left;
 }
 	
-div.transparent {
+.transparent {
 	opacity:0.8;
 }
-div.center {
+.center {
 	text-align:center;
 }

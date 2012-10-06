@@ -23,3 +23,6 @@
 #content div.hentry.preview .entry-header h2 {
     display: inline;
 }
+#sidebar img {
+    margin:10px;
+}

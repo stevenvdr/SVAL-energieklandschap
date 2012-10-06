@@ -52,10 +52,11 @@
 #header_menu {
 	position:absolute;
 	bottom:0;
-    left:10px;
+	left:10px;
 }
 #header_menu ul {
 	float:right;
+	margin-top:0px;
 }
 #header_menu ul li {
 	text-align:center;
