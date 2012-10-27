@@ -10,7 +10,7 @@ urlpatterns = patterns('',
     #url(r'^weblog/', include('zinnia.urls')),
     url(r'^comments/', include('django.contrib.comments.urls')),
     url(r'^', include('cms.urls')),
-    #url(r'^forms/', include('form_designer.urls')),
+    url(r'^forms/', include('form_designer.urls')),
 )
 
 if settings.DEBUG:

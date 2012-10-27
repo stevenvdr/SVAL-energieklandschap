@@ -133,10 +133,17 @@ INSTALLED_APPS = (
     'projectsite.apps.photologue-plugin',
     'tagging',
     'zinnia',
-    'cmsplugin_zinnia'
+    'cmsplugin_zinnia',
+    'form_designer',
+    'form_designer.contrib.cms_plugins.form_designer_form',
     #'projectsite.reservation',
 )
+
+#SEO Settings for django-cms
+CMS_SEO_FIELDS = True
 
 #Zinnia configurations
 CMSPLUGIN_ZINNIA_APP_MENUS = ()
 CMSPLUGIN_ZINNIA_TEMPLATES = []
+
+CMS_DBGETTEXT = False
