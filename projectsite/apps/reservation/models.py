@@ -17,14 +17,14 @@ class ReservationPlugin(CMSPlugin):
         return unicode(self).encode('utf-8')
 
 class Reservation(models.Model):
-    date = models.DateField()
+    date = models.DateField(verbose_name="Datum")
     reservation_list = models.ForeignKey(ReservationPlugin)
     approved = models.BooleanField(default=False)
     
-    contact_name = models.CharField(max_length=100)
-    contact_mail = models.EmailField(max_length=100)
-    contact_phone = models.CharField(max_length=30)
+    contact_name = models.CharField(verbose_name="Naam", max_length=100)
+    contact_mail = models.EmailField(verbose_name="E-mailadres", max_length=100)
+    contact_phone = models.CharField(verbose_name="Telefoonnummer", max_length=30)
 
     class Meta:
         ordering = ['date']
-        unique_together = (("date", "reservation_list"),)
+        #unique_together = (("date", "reservation_list"),)

@@ -1,0 +1,82 @@
+table.calendar {
+    width:100%;
+    border-collapse: collapse; border: 1px solid #C0C0C0;
+}
+
+table.calendar tr {
+    height:60px;
+}
+
+table.calendar th {
+    text-align: center;
+    border: 1px solid #C0C0C0;
+    width: 14%;
+    vertical-align: middle;
+}
+
+table.calendar td {
+    text-align: right;
+    font-size: large;
+    border: 1px solid #C0C0C0;
+    width: 14%;
+    padding: 4px;
+}
+table.calendar td img{
+    width:15px;
+    height: 15px;
+    margin-right: 3px;
+}
+
+#calendar_container {
+    position: relative;
+    width: 100%;
+}
+
+#calendar_form_container {
+    position: absolute;
+    top: 10px;
+    margin: 0px auto;
+    text-align: center;
+    width: 100%;
+}
+#calendar_form {
+    position: relative;
+    width: 220px;
+    margin: 0px auto;
+    opacity: 0.9;
+    background: #FFF;
+    border: #AAA solid 1px;
+    padding: 20px;
+}
+#calendar_contact_container {
+    position: absolute;
+    top: 10px;
+    margin: 0px auto;
+    width: 100%;
+}
+#calendar_contact {
+    position: relative;
+    width: 350px;
+    margin: 0px auto;
+    opacity: 0.9;
+    background: #FFF;
+    border: #AAA solid 1px;
+    padding: 20px;
+}
+#calendar_contact p {
+    margin:0;
+}
+
+#calendar_navigation {
+    width: 100%;
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+
+#calendar_navigation table{
+    width: 100%;
+}
+
+#calendar_navigation h2{
+    text-align: center;
+}

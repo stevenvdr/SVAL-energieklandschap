@@ -2,70 +2,111 @@
 {% load i18n %}
 
 {% addtoblock "js" %}
+<script type="text/javascript" xmlns="http://www.w3.org/1999/html" src="{{ STATIC_URL }}admin/js/jquery.min.js"></script>
+<script type="text/javascript" src="{{ STATIC_URL }}js/calendar.js"></script>
 <script type="text/javascript">
-</script>
+    {% if not form.errors %}window.onload=hideForm();{% endif %} hideContact();
+    $(document).keyup(function(e) {
+        if (e.keyCode == 27) { hideForm(); hideContact();}   // esc
+    });
+    $(document).mouseup(function (e)
+    {
+        if ($("calendar_contact").has(e.target).length === 0) { hideContact();}
+        if ($("calendar_form").has(e.target).length === 0) { hideForm();}
+    });</script>
 {% endaddtoblock %}
 
+{% addtoblock "css" %}
+<link href="{{ STATIC_URL }}css/calendar.css"  rel="stylesheet" type="text/css" />
+{% endaddtoblock %}
 
+<div id="calendar_navigation">
+    <table>
+        <tr>
+            <th width="20%"><a href="?month={{ prev_month.month }}&year={{ prev_month.year }}">Ga een maand terug</a></th>
+            <th><h2>{{ month|date:"M Y"}}</h2></th>
+            <th width="20%"><a href="?month={{ next_month.month }}&year={{ next_month.year }}">Ga een maand vooruit</a></th>
+        </tr>
+    </table>
+</div>
 {% if messages %}
-    <ul class="messages">
-        {% for message in messages %}
-            <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
-        {% endfor %}
-    </ul>
+<ul class="messages">
+    {% for message in messages %}
+    <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+    {% endfor %}
+</ul>
 {% endif %}
-
-<!-- begin of #slider -->
 <div id="calendar_container">
 <div id="calendar">
-    <table>
+    <table class="calendar">
     <tr>
-        <th>{% trans 'Monday' %}</th>
-        <th>{% trans 'Tuesday' %}</th>
-        <th>{% trans 'Wednesday' %}</th>
-        <th>{% trans 'Thursday' %}</th>
-        <th>{% trans 'Friday' %}</th>
-        <th>{% trans 'Saturday' %}</th>
-        <th>{% trans 'Sunday' %}</th>
+        <th>Maandag</th>
+        <th>Dinsdag</th>
+        <th>Woensdag</th>
+        <th>Donderdag</th>
+        <th>Vrijdag</th>
+        <th>Zaterdag</th>
+        <th>Zondag</th>
     </tr>
     {% for day in calendar %}
-    {% cycle '<tr><td>' '<td>' '<td>' '<td>' '<td>' '<td>' '<td>' %}
+    {% cycle '<tr><td' '<td' '<td' '<td' '<td' '<td' '<td' %} onMouseOver="this.bgColor='#EEE'" onMouseOut="this.bgColor='#FFF'" >
+    {{ day.date.day }}</br>
+
     {% if not day.reservation %}
-        <div class='free'>
-        {% trans 'free' %}
-        {% trans 'Make a reservation for this day' %}
+        <img src="{{ STATIC_URL }}img/reservation/green.jpg" alt="Deze dag is nog vrij"/>
+        <a href="#" onclick="return clickSubscribe('{{ day.date|date:"SHORT_DATE_FORMAT" }}');"> <img src="{{ STATIC_URL }}img/reservation/edit.jpg" alt="Reserveer deze dag"/></a>
     {% else %}
         {% if day.reservation.approved %}
-            <div class='approved'>
-            {% trans 'reserved' %}
+            <img src="{{ STATIC_URL }}img/reservation/red.jpg" alt="Deze dag werd al gereserveerd"/>
             {% if request.user.is_superuser %}
-                <a href="./?delete={{ day.date|date:"SHORT_DATE_FORMAT" }}">{% trans 'Delete this reservation' %}</a>
-                {{ day.reservation.contact_name }}
-                {{ day.reservation.contact_mail }}
-                {{ day.reservation.contact_phone }}
+        <a href="#" onclick="return clickReservation('{{ day.date|date:"SHORT_DATE_FORMAT"}}',
+        '{{ day.reservation.contact_name }}',
+        '{{ day.reservation.contact_mail }}',
+        '{{ day.reservation.contact_phone }}',
+        true );"><img src="{{ STATIC_URL }}img/reservation/magnifying_glass.png" alt="Bekijk contact informatie"/></a>
+                <a href="?delete={{ day.date|date:"SHORT_DATE_FORMAT" }}"><img src="{{ STATIC_URL }}img/reservation/remove.jpg" alt="Verwijder deze reservatie"/></a>
             {% endif %}
         {% else %}
-            <div class='pending'>
-            {% trans 'pending' %}
+            <img src="{{ STATIC_URL }}img/reservation/orange.jpg" alt="Deze dag werd al gereserveerd, maar nog niet goedgekeurd"/>
             {% if request.user.is_superuser %}
-                <a href="./?approve={{ day.date|date:"SHORT_DATE_FORMAT" }}">{% trans 'Approve this reservation' %}</a>
-                <a href="./?delete={{ day.date|date:"SHORT_DATE_FORMAT" }}">{% trans 'Delete this reservation' %}</a>
-                {{ day.reservation.contact_name }}
-                {{ day.reservation.contact_mail }}
-                {{ day.reservation.contact_phone }}
+                <a href="#" onclick="return clickReservation('{{ day.date|date:"SHORT_DATE_FORMAT"}}',
+        '{{ day.reservation.contact_name }}',
+        '{{ day.reservation.contact_mail }}',
+        '{{ day.reservation.contact_phone }}',
+        false );"><img src="{{ STATIC_URL }}img/reservation/magnifying_glass.png" alt="Bekijk contact informatie"/></a>
+                <a href="?approve={{ day.date|date:"SHORT_DATE_FORMAT" }}"><img src="{{ STATIC_URL }}img/reservation/approve.jpg" alt="Keur deze reservatie goed"/></a>
+                <a href="?delete={{ day.date|date:"SHORT_DATE_FORMAT" }}"><img src="{{ STATIC_URL }}img/reservation/remove.jpg" alt="Verwijder deze reservatie"/></a>
             {% endif %}
         {% endif %}
     {% endif %}
-    </div>
     {% cycle '</td>' '</td>' '</td>' '</td>' '</td>' '</td>' '</td></tr>' %}
     {% endfor %}
     </table>
+</div>
+
+<div id="calendar_form_container">
+    <div id="calendar_form">
+        <form method="post" action="">
+            {%  csrf_token %}
+            {{ form.as_p }}
+            <input type="submit" value="Verzenden"/>
+            <input onclick="hideForm()" type="button" value="Annuleren" />
+        </form>
+    </div>
+</div>
+    {% if request.user.is_superuser %}
+    <div id="calendar_contact_container"></div>
+    {% endif %}
 
 </div>
-<div>
-<form method="post" action="">
-    {%  csrf_token %}
-    {{ form.as_p }}
-    <input type="submit" value="Submit" />
-</form>
+
+<div id="help">
+    <p> Legende:<br/>
+        <img src="{{ STATIC_URL }}img/reservation/green.jpg" alt="Deze dag is nog vrij"/> = Deze dag is nog vrij<br/>
+        <img src="{{ STATIC_URL }}img/reservation/red.jpg" alt="Deze dag werd al gereserveerd"/> = Deze dag werd al gereserveerd<br/>
+        <img src="{{ STATIC_URL }}img/reservation/orange.jpg" alt="Deze dag werd al gereserveerd, maar nog niet bevestigd"/>
+            = Deze dag werd al gereserveerd, maar nog niet bevestigd<br/>
+        <img src="{{ STATIC_URL }}img/reservation/edit.jpg" alt="Reserveer deze dag" width="15px"/> = Reserveer deze dag<br/>
+
+    </p>
 </div>

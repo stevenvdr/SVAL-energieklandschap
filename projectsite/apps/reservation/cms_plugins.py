@@ -32,30 +32,25 @@ class CMSReservationPlugin(CMSPluginBase):
                 reservation = form.save(commit=False)
                 reservation.reservation_list = instance
                 reservation.save()
-                
+
                 #Send mail to responsible for the reservation
                 send_mail(_('New reservation for %s') % instance.name,
-                            _('''A new reservation was made for %(name)s.
-                            Contact information:
-                            - Name: %(contact_name)s
-                            - Email: %(contact_mail)s
-                            - Phone number: %(contact_phone)s
-                            ''') % {'name': instance.name,
-                                    'contact_name': reservation.contact_name,
-                                    'contact_mail': reservation.contact_mail,
-                                    'contact_phone': reservation.contact_phone},
-                            'info@sval.be', #TODO: add mail to settings
-                            [instance.inform_mail], fail_silently=True) 
-                            
-                #Send confirmation mail to the one who just reserved
-                send_mail(_('New reservation for %s') % instance.name,
-                            _('''You have just made a  for %(name)s. Your reservation will now be reviewed.
-                            If you have further questions, please contact us at %(mail)s.
-                            ''') % {'name': instance.name,
-                                    'mail': 'info@sval.be',},
+                            _('A new reservation was made for %(name)s.\n') % {'name': instance.name,} + \
+                            _('Contact information:\n') % {'contact_name': reservation.contact_name,} +\
+                            _('- Name: %(contact_name)s\n') % {'contact_name': reservation.contact_name,} +\
+                            _('- Email: %(contact_mail)s\n') % {'contact_mail': reservation.contact_mail,} +\
+                            _('- Phone number: %(contact_phone)s\n') % {'contact_phone': reservation.contact_phone,},
                             'info@sval.be', #TODO: add mail to settings
                             [instance.inform_mail], fail_silently=True)
-                
+
+                #Send confirmation mail to the one who just reserved
+                send_mail(_('New reservation for %s') % instance.name,
+                            _('You have just made a reservation for %(name)s. Your reservation will now be reviewed.\n') % {'name': instance.name,} +\
+                            _('If you have further questions, please contact us at %(mail)s.\n') % {'mail': "info@sval.be",},
+
+                            'info@sval.be', #TODO: add mail to settings
+                            [instance.inform_mail], fail_silently=True)
+
                 messages.success(request, _('Your reservation was successful, and is now pending. You will have received an email confirming this.'))
 
                 form = ReservationForm()
@@ -70,15 +65,28 @@ class CMSReservationPlugin(CMSPluginBase):
             self.administration(request)
             #Create new form
             form = ReservationForm()
-            
-        #generate context for the calendar
+
         if all(key in request.GET for key in ("month","year")):
             month = date(int(request.GET['year']), int(request.GET['month']),1)
         else:
             month = date.today()
+
+        if month.month % 12 is 0:
+            next_month = date(month.year+1, 1, 1)
+        else:
+            next_month = date(month.year, month.month+1, 1)
+
+        if month.month is 1:
+            prev_month = date(month.year-1, 12, 1)
+        else:
+            prev_month = date(month.year, month.month-1, 1)
+
         context.update({
             'calendar':self.get_calendar_context(month),
-            'form':form
+            'form':form,
+            'month': month,
+            'prev_month': prev_month,
+            'next_month': next_month,
         })
         
         return context
@@ -126,8 +134,8 @@ class CMSReservationPlugin(CMSPluginBase):
             
             #no reservation for that day
             else:
-                calendar.append([{
-                    'date':dates,}])
+                calendar.append({
+                    'date':dates,})
 
         return calendar
     

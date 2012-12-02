@@ -136,7 +136,7 @@ INSTALLED_APPS = (
     'cmsplugin_zinnia',
     'form_designer',
     'form_designer.contrib.cms_plugins.form_designer_form',
-    #'projectsite.reservation',
+    'projectsite.apps.reservation',
 )
 
 #SEO Settings for django-cms
