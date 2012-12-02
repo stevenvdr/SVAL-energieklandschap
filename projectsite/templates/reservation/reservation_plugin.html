@@ -49,7 +49,7 @@
         <th>Zondag</th>
     </tr>
     {% for day in calendar %}
-    {% cycle '<tr><td' '<td' '<td' '<td' '<td' '<td' '<td' %} onMouseOver="this.bgColor='#EEE'" onMouseOut="this.bgColor='#FFF'" >
+    {% cycle '<tr><td' '<td' '<td' '<td' '<td' '<td' '<td' %} onMouseOver="this.bgColor='#EEEEEE'" onMouseOut="this.bgColor='#FFFFFF'" >
     {{ day.date.day }}</br>
 
     {% if not day.reservation %}

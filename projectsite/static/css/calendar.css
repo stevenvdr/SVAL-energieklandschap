@@ -44,8 +44,8 @@ table.calendar td img{
     width: 220px;
     margin: 0px auto;
     opacity: 0.9;
-    background: #FFF;
-    border: #AAA solid 1px;
+    background: #FFFFFF;
+    border: #AAAAAA solid 1px;
     padding: 20px;
 }
 #calendar_contact_container {
@@ -59,8 +59,8 @@ table.calendar td img{
     width: 350px;
     margin: 0px auto;
     opacity: 0.9;
-    background: #FFF;
-    border: #AAA solid 1px;
+    background: #FFFFFF;
+    border: #AAAAAA solid 1px;
     padding: 20px;
 }
 #calendar_contact p {
