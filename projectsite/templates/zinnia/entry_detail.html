@@ -40,50 +40,6 @@
   {% endwith %}
 {% endblock %}
 
-{% block entry-comments %}
-<div id="comments">
-  <h3>{% trans "Comments" %}</h3>
-  {% with comment_list=object.comments %}
-  {% if comment_list.count %}
-  <ol id="comment-list">
-    {% for comment in comment_list %}
-    <li id="comment_{{ comment.pk }}" class="comment vcard {% cycle box1,box2 %}{% if comment.user in object.authors.all %} post-author{% endif %}">
-      <p class="comment-info">
-	{% if comment.url %}
-	<a href="{{ comment.url }}" rel="external nofollow"
-           class="fn url">{{ comment.user_name }}</a>
-	{% else %}
-	{{ comment.user_name }}
-	{% endif %}
-	{% trans "op" %}
-        <abbr class="comment-published" title="{{ comment.submit_date|date:"c" }}Z">
-          {{ comment.submit_date }}
-        </abbr>
-      </p>
-      {{ comment.comment|linebreaks }}
-    </li>
-    {% endfor %}
-  </ol>
-    {% if not object.comments_are_open %}
-  <p>{% trans "Comments are closed." %}</p>
-    {% endif %}
-  {% else %}
-    {% if object.comments_are_open %}
-  <p>{% trans "No comments yet." %}</p>
-    {% else %}
-  <p>{% trans "Comments are closed." %}</p>
-    {% endif %}
-  {% endif %}
-  {% endwith %}
-</div>
-{% endblock %}
-
-{% block entry-comments-form %}
-{% if object.comments_are_open %}
-  {% render_comment_form for object %}
-{% endif %}
-{% endblock %}
-
 {% endblock %}
 
 {% block admin_tools %}

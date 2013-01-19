@@ -7,6 +7,9 @@
 .entry-header h2 {
     margin-bottom: 0;
 }
+.entry-body {
+    margin-bottom: 30px;
+}
 
 div.entry-footer {
     margin-bottom: 10px;

@@ -28,10 +28,6 @@
   <h3>{% trans "Search" %}</h3>
   {% include "zinnia/tags/search_form.html" %}
 </div>
-<div id="widget-populars" class="widget">
-  <h3>{% trans "Popular entries" %}</h3>
-  {% get_popular_entries 5 %}
-</div>
 {% if user.is_authenticated %}
 <div id="widget-tools" class="widget">
   <h3>{% trans "Tools" %}</h3>
