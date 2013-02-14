@@ -40,15 +40,17 @@ class CMSReservationPlugin(CMSPluginBase):
                             _('- Name: %(contact_name)s\n') % {'contact_name': reservation.contact_name,} +\
                             _('- Email: %(contact_mail)s\n') % {'contact_mail': reservation.contact_mail,} +\
                             _('- Phone number: %(contact_phone)s\n') % {'contact_phone': reservation.contact_phone,},
-                            'info@sval.be', #TODO: add mail to settings
+                            _('- Datum van reservatie: %(date)s\n') % {'date': reservation.date,},
+                            'hakselaar@sval.be', #TODO: add mail to settings
                             [instance.inform_mail], fail_silently=True)
 
                 #Send confirmation mail to the one who just reserved
                 send_mail(_('New reservation for %s') % instance.name,
-                            _('You have just made a reservation for %(name)s. Your reservation will now be reviewed.\n') % {'name': instance.name,} +\
-                            _('If you have further questions, please contact us at %(mail)s.\n') % {'mail': "info@sval.be",},
-
-                            'info@sval.be', #TODO: add mail to settings
+                          _('U heeft zopas een reservatie gemaakt voor gebruik van de hakselaar.')  +\
+                          _('Uw reservatie zal nu worden nagekeken en in de komende dagen wordt contact opgenomen voor verdere afspraken.\n') +\
+                          _('Bij verdere vragen of dringendheid kan je ook zelf contact opnemen met Steven Van Hyfte 0479 257670.\n') +\
+                          _('Alvast bedankt.'),
+                            'hakselaar@sval.be', #TODO: add mail to settings
                             [instance.inform_mail], fail_silently=True)
 
                 messages.success(request, _('Your reservation was successful, and is now pending. You will have received an email confirming this.'))
