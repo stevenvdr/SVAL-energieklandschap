@@ -51,7 +51,7 @@ class CMSReservationPlugin(CMSPluginBase):
                           _('Bij verdere vragen of dringendheid kan je ook zelf contact opnemen met Steven Van Hyfte 0479 257670.\n') +\
                           _('Alvast bedankt.'),
                             'hakselaar@sval.be', #TODO: add mail to settings
-                            [instance.inform_mail], fail_silently=True)
+                            [reservation.contact_mail], fail_silently=True)
 
                 messages.success(request, _('Your reservation was successful, and is now pending. You will have received an email confirming this.'))
 
