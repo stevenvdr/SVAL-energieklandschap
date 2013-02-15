@@ -1,7 +1,6 @@
 from datetime import date, timedelta, datetime
 
 from django.contrib import messages
-from django.contrib.auth.decorators import login_required, permission_required
 from django.core.mail import send_mail
 from django.utils.translation import ugettext as _
 
@@ -39,7 +38,7 @@ class CMSReservationPlugin(CMSPluginBase):
                             _('Contact information:\n') % {'contact_name': reservation.contact_name,} +\
                             _('- Name: %(contact_name)s\n') % {'contact_name': reservation.contact_name,} +\
                             _('- Email: %(contact_mail)s\n') % {'contact_mail': reservation.contact_mail,} +\
-                            _('- Phone number: %(contact_phone)s\n') % {'contact_phone': reservation.contact_phone,},
+                            _('- Phone number: %(contact_phone)s\n') % {'contact_phone': reservation.contact_phone,} +\
                             _('- Datum van reservatie: %(date)s\n') % {'date': reservation.date,},
                             'hakselaar@sval.be', #TODO: add mail to settings
                             [instance.inform_mail], fail_silently=True)
